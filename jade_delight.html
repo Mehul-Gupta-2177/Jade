@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Jade Delight</title>
+<style>
+	label{
+		display: inline-block;
+  		width: 15%;
+  		text-align: left;
+	}
+	input{
+		border:1px solid #ff0000;
+		box-sizing: border-box;
+		text-align: left;
+
+	}
+	body
+	{
+		background-color: lightpink;
+		font-family:cursive;
+	}
+	h1{
+		text-align: center;
+	}
+</style>
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+<script>
+	$(document).ready(function() {
+	$(".userInfo.address").hide();
+		var sub = 0.00
+		document.getElementsByName("cost")[0].value = 0;
+		document.getElementsByName("cost")[1].value = 0;
+		document.getElementsByName("cost")[2].value = 0;
+		document.getElementsByName("cost")[3].value = 0;
+		document.getElementsByName("cost")[4].value = 0;
+
+		var Chicken = 0;
+		var Pork = 0;
+		var Shrimp = 0;
+		var MChicken = 0;
+		var Rice = 0;
+	$('select[name="quan0"]').change(function() {
+        var num = this.value;
+		Chicken = num;
+		num = parseFloat(num);
+		var price_update = num * 4.50;
+		document.getElementsByName("cost")[0].value = price_update;
+
+
+		sub = 0.00;
+	for(i = 0; i < 5; i++)
+	{		
+		if(document.getElementsByName("cost")[i].value != "")
+		{
+		sub = sub + parseFloat(document.getElementsByName("cost")[i].value);
+		}
+	}
+	document.getElementById("subtotal").value = sub.toFixed(2);
+	var tax = sub * 0.0625;
+	var total_cost = sub * 1.0625
+	document.getElementById("tax").value = tax.toFixed(2);
+	document.getElementById("total").value = total_cost.toFixed(2);
+
+
+    });
+	$('select[name="quan1"]').change(function() {
+        var num = this.value;
+		Pork = num;
+		num = parseFloat(num);
+		var price_update = num * 6.25;
+		document.getElementsByName("cost")[1].value = price_update;
+
+		sub = 0.00;
+	for(i = 0; i < 5; i++)
+	{		
+		if(document.getElementsByName("cost")[i].value != "")
+		{
+		sub = sub + parseFloat(document.getElementsByName("cost")[i].value);
+		}
+	}
+	document.getElementById("subtotal").value = sub.toFixed(2);
+	var tax = sub * 0.0625;
+	var total_cost = sub * 1.0625
+	document.getElementById("tax").value = tax.toFixed(2);
+	document.getElementById("total").value = total_cost.toFixed(2);
+    });
+	$('select[name="quan2"]').change(function() {
+        var num = this.value;
+		Shrimp = num;
+		num = parseFloat(num);
+		var price_update = num * 6.25;
+		document.getElementsByName("cost")[2].value = price_update;
+
+		sub = 0.00;
+	for(i = 0; i < 5; i++)
+	{		
+		if(document.getElementsByName("cost")[i].value != "")
+		{
+		sub = sub + parseFloat(document.getElementsByName("cost")[i].value);
+		}
+	}
+	document.getElementById("subtotal").value = sub.toFixed(2);
+	var tax = sub * 0.0625;
+	var total_cost = sub * 1.0625
+	document.getElementById("tax").value = tax.toFixed(2);
+	document.getElementById("total").value = total_cost.toFixed(2);
+    });
+	$('select[name="quan3"]').change(function() {
+        var num = this.value;
+		MChicken = num;
+		num = parseFloat(num);
+		var price_update = num * 7.50;
+		document.getElementsByName("cost")[3].value = price_update;
+
+		sub = 0.00;
+	for(i = 0; i < 5; i++)
+	{		
+		if(document.getElementsByName("cost")[i].value != "")
+		{
+		sub = sub + parseFloat(document.getElementsByName("cost")[i].value);
+		}
+	}
+	document.getElementById("subtotal").value = sub.toFixed(2);
+	var tax = sub * 0.0625;
+	var total_cost = sub * 1.0625
+	document.getElementById("tax").value = tax.toFixed(2);
+	document.getElementById("total").value = total_cost.toFixed(2);
+    });
+	$('select[name="quan4"]').change(function() {
+        var num = this.value;
+		Rice = num;
+		num = parseFloat(num);
+		var price_update = num * 2.85;
+		document.getElementsByName("cost")[4].value = price_update;
+
+		sub = 0.0000;
+	for(i = 0; i < 5; i++)
+	{		
+		if(document.getElementsByName("cost")[i].value != "")
+		{
+		sub = sub + parseFloat(document.getElementsByName("cost")[i].value);
+		}
+	}
+	document.getElementById("subtotal").value = sub.toFixed(2);
+	var tax = sub * 0.0625;
+	var total_cost = sub * 1.0625
+	document.getElementById("tax").value = tax.toFixed(2);
+	document.getElementById("total").value = total_cost.toFixed(2);
+    });
+
+	$('input[name="p_or_d"]').change(function() {
+		
+		if(this.value == "pickup")
+		{
+			$(".userInfo.address").hide();
+		}
+		else
+		{
+			$(".userInfo.address").show();
+		}
+
+	});
+
+	$('input[type="button"]').click(function() {
+
+		var name = document.getElementsByName("lname")[0];
+		var l_provided = true;
+		if(name.value == "")
+		{
+			alert("Please Enter Last Name");
+			l_provided = false;
+		}
+
+		var phone_provided = true;
+		var phone = document.getElementsByName("phone")[0];
+		phone = phone;
+		if(phone.length < 7)
+		{
+			alert("Please Provide a Phone number");
+		}
+		else
+		{
+			phone_provided = IsPhoneValid(phone.value);
+			if(phone_provided == false)
+			{
+				alert("Please Provide a valid phone number");
+			}
+
+		}
+		var del_type = document.querySelector('input[name="p_or_d"]:checked').value
+		let New_Date_Time ="";
+		if(del_type == "pickup")
+		{
+			var minutes = 15;
+			var total_milliseconds = 60000 * minutes ;
+			const Old_Date_Time = new Date();
+			 New_Date_Time =  new Date(Old_Date_Time.valueOf() + total_milliseconds);
+		}
+		else
+		{
+			var minutes = 30;
+			var total_milliseconds = 60000 * minutes ;
+			const Old_Date_Time = new Date();
+			 New_Date_Time =  new Date(Old_Date_Time.valueOf() + total_milliseconds);
+		}
+		// validate street and city
+		var Street_Addy = true;
+		if(del_type == "delivery")
+		{
+			var str = document.getElementsByName("street")[0];
+			var cty = document.getElementsByName("city")[0];
+			str = str.value;
+			cty = cty.value;
+			if(cty == "" || str == "")
+			{
+				Street_Addy = false;
+				alert("Please Provide an valid Address wwith both street and City");
+			}
+
+		}
+
+		// validate if anything was ordered
+		var ordered = true;
+		if(sub < 1)
+		{
+			ordered = false;
+			alert("Please Add items to Cart");
+		}
+
+		if(ordered == true && l_provided == true && Street_Addy == true && phone_provided == true)
+		{
+			var new_win =  window.open();
+			alert("Thank you for your order")
+			var string_overall = "" + "Order Details" + "<br>" + "Chicken Chop Suey: "  + Chicken + "  $" + document.getElementsByName("cost")[0].value+  "<br>" +
+								"Sweet and Sour Pork: "  + Pork + "  $" + document.getElementsByName("cost")[1].value + "<br>" +
+								"Shrimp Lo Mein: "  + Shrimp +  "  $" + document.getElementsByName("cost")[2].value + "<br>" +
+								"Moo Shi Chicken: " + MChicken + "  $" + document.getElementsByName("cost")[3].value +  "<br>" +
+								"Fried Rice: " + Rice + "  $" + document.getElementsByName("cost")[4].value + "<br>" + 
+								"Subtotal: $" + sub + "<br>" +
+								"Tax: $" + document.getElementById("tax").value  + "<br>" +
+								"Total: $" + document.getElementById("total").value  + "<br>" +
+								"Estimated Time: " + New_Date_Time;
+								new_win.document.write(string_overall);	
+		}
+	});
+
+	function IsPhoneValid(Pnumber)
+	{
+		var counter = 0;
+		for(var i = 0; i < Pnumber.length; i++)
+		{
+			
+			if(Pnumber[i] == '0' ||Pnumber[i] == '1' ||Pnumber[i] == '2' || Pnumber[i] == '3' || Pnumber[i] == '4' || Pnumber[i] == '5'
+				|| Pnumber[i] == '6' || Pnumber[i] == '7' || Pnumber[i] == '8' || Pnumber[i] == '9' )
+				{
+					counter = counter + 1;
+				}
+		}
+
+		if(counter > 6 && counter < 11)
+				{
+					return true;
+				}
+				else
+				{
+					return false;
+				}
+	}
+
+});
+</script>
+</head>
+
+<body>
+<script>
+
+function MenuItem(name, cost)
+{
+	this.name = name;
+	this.cost=cost;
+}
+
+menuItems = new Array(
+	new MenuItem("Chicken Chop Suey", 4.5),
+	new MenuItem("Sweet and Sour Pork", 6.25),
+	new MenuItem("Shrimp Lo Mein", 6.25),
+	new MenuItem("Moo Shi Chicken", 7.5),
+	new MenuItem("Fried Rice", 2.85)
+);
+
+function makeSelect(name, minRange, maxRange)
+{
+	var t= "";
+	t = "<select name='" + name + "' size='1'>";
+	for (j=minRange; j<=maxRange; j++)
+	   t += "<option>" + j + "</option>";
+	t+= "</select>"; 
+	return t;
+}
+
+function td(content, className="")
+{
+	return "<td class = '" + className + "'>" + content + "</td>";
+}
+	
+</script>
+
+<h1>Jade Delight</h1>
+<form>
+
+<p class="userInfo"><label>First Name</label>: <input type="text"  name='fname' /></p>
+<p class="userInfo"><label>Last Name*</label>:  <input type="text"  name='lname' /></p>
+<p class="userInfo address"><label>Street*</label>: <input type="text" name='street' /></p>
+<p class="userInfo address"><label>City*</label>: <input type="text" name='city' /></p>
+<p class="userInfo"><label>Phone*</label>: <input type="text"  name='phone' /></p>
+<p> 
+	<input type="radio"  name="p_or_d" value = "pickup" checked="checked"/>Pickup  
+	<input type="radio"  name='p_or_d' value = 'delivery'/>
+	Delivery
+</p>
+<table border="0" cellpadding="3">
+  <tr>
+    <th>Select Item</th>
+    <th>Item Name</th>
+    <th>Cost Each</th>
+    <th>Total Cost</th>
+  </tr>
+<script>
+
+  var s = "";
+  for (i=0; i< menuItems.length; i++)
+  {
+	  s += "<tr>";
+	  s += td(makeSelect("quan" + i, 0, 10),"selectQuantity");
+	  s += td(menuItems[i].name, "itemName");
+	  s += td("$" +menuItems[i].cost.toFixed(2), "cost");
+	  s += td("$<input type='text' name='cost'/>", "totalCost");
+	  s+= "</tr>";
+  }
+  document.writeln(s);
+</script>
+</table>
+<p class="subtotal totalSection"><label>Subtotal:</label>
+   $ <input type="text"  name='subtotal' id="subtotal" />
+</p>
+<p class="tax totalSection"><label>Mass tax 6.25%:</label>
+  $ <input type="text"  name='tax' id="tax" />
+</p>
+<p class="total totalSection"><label>Total:</label> $ <input type="text"  name='total' id="total" />
+</p>
+
+<input type = "button" value = "Submit Order" />
+
+</form>
+</body>
+</html>
